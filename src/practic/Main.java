@@ -66,8 +66,8 @@ public class Main {
   */
 
 
-        Matrix matrix = new Matrix();
-        Matrix matrix2 = new Matrix();
+        Matrix matrix = new Matrix(3,3);
+        Matrix matrix2 = new Matrix(3,3);
         matrix.pst();
         matrix.print();
 //        matrix.div(10);
@@ -76,8 +76,10 @@ public class Main {
         matrix2.print();
         System.out.println();
 
-        Matrix matrix4 = new Matrix();
-        matrix4.sumMatrix(matrix.getMass(), matrix2.getMass());
+        Matrix matrix4 = new Matrix(2,3);
+        matrix4.print();
+        System.out.println();
+        matrix4.difMatrix(matrix.getMass(), matrix2.getMass());
         matrix4.print();
 
 ////        System.out.println(Arrays.deepToString(matrix.getMass()));

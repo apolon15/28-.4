@@ -5,15 +5,14 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 
-
 public class Matrix {
 
     private double[][] mass;
     private Matrix m1;
     private Matrix m2;
 
-    public Matrix() {
-        this.mass = new double[2][2];
+    public Matrix(int iSize, int jSize) {
+        this.mass = new double[iSize][jSize];
     }
 
     public Matrix(double[][] mass, double[][] mass2) {
@@ -126,10 +125,14 @@ public class Matrix {
     }
 
     public double[][] multp(int num) {
-        for (int i = 0; i < getMass().length; i++) {
-            for (int j = 0; j < getMass()[i].length; j++) {
-                mass[i][j] = mass[i][j] * num;
+        try {
+            for (int i = 0; i < getMass().length; i++) {
+                for (int j = 0; j < getMass()[i].length; j++) {
+                    mass[i][j] = mass[i][j] * num;
+                }
             }
+        } catch (ArrayIndexOutOfBoundsException exception) {
+            System.out.println("Не допустимый размер матрицы");
         }
         return getMass();
     }
@@ -143,27 +146,36 @@ public class Matrix {
             }
         } catch (ArithmeticException ex) {
             System.out.println("Деление на 0 не выполняется");
+        } catch (ArrayIndexOutOfBoundsException exception) {
+            System.out.println("Не допустимый размер матрицы");
         }
         return getMass();
     }
 
     public double[][] sumMatrix(double[][] m1, double[][] m2) {
-        for (int i = 0; i < m1.length; i++) {
-            for (int j = 0; j < m1[i].length; j++) {
-                this.mass[i][j] = m1[i][j] + m2[i][j];
+        try {
+            for (int i = 0; i < m1.length; i++) {
+                for (int j = 0; j < m1[i].length; j++) {
+                    this.mass[i][j] = m1[i][j] + m2[i][j];
+                }
             }
+        } catch (ArrayIndexOutOfBoundsException exception) {
+            System.out.println("Не допустимый размер матрицы");
         }
         return this.mass;
     }
 
     public double[][] difMatrix(double[][] m1, double[][] m2) {
-        double[][] newMass = new double[2][2];
-        for (int i = 0; i < m1.length; i++) {
-            for (int j = 0; j < m1[i].length; j++) {
-                newMass[i][j] = m1[i][j] - m2[i][j];
+        try {
+            for (int i = 0; i < m1.length; i++) {
+                for (int j = 0; j < m1[i].length; j++) {
+                    this.mass[i][j] = m1[i][j] - m2[i][j];
+                }
             }
+        } catch (ArrayIndexOutOfBoundsException exception) {
+            System.out.println("Не допустимый размер матрицы");
         }
 
-        return newMass;
+        return this.mass;
     }
 }
